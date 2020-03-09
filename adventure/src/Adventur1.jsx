@@ -3,16 +3,33 @@ import Card from "react-bootstrap/card";
 import { GiSpartanHelmet } from "react-icons/gi";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/row";
-let arr = [];
+
 class Adventure extends React.Component {
   state = {
     username: "Prince Yamato Take",
     story: `The insignia of the great Japanese Empire is composed of three treasures which have been considered sacred, and guarded with
         jealous care from time immemorial. These are the Yatano-no-Kagami or the Mirror of Yata, the Yasakami-no-Magatama or the Jewel of
-        Yasakami, and the Murakumo-no-Tsurugi or the Sword of Murakumo.`
+        Yasakami, and the Murakumo-no-Tsurugi or the Sword of Murakumo.`,
+    wordIterator: 0
   };
+
   componentDidMount() {
-    setTimeout(this.setState(), 3000);
+    let newArr = this.state.story.split(" ");
+    this.setState({ story: newArr });
+  }
+
+  incrementIterator() {
+    if (this.state.wordIterator < this.state.story.length) {
+      setTimeout(() => {
+        this.setState({ wordIterator: this.state.wordIterator + 1 });
+      }, 1000);
+      console.log(this.state.wordIterator);
+    }
+  }
+
+  renderText() {
+    this.incrementIterator();
+    return this.state.story.slice(0, this.state.wordIterator);
   }
 
   render() {
@@ -26,7 +43,7 @@ class Adventure extends React.Component {
             </Card.Header>
             <Card.Body>
               <Card.Title>USERNAME OR STORYTITLE</Card.Title>
-              <Card.Text>{this.state.story}</Card.Text>
+              <Card.Text>{this.renderText()}</Card.Text>
             </Card.Body>
           </Card>
         </Row>
