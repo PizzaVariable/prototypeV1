@@ -7,29 +7,27 @@ import Row from "react-bootstrap/row";
 class Adventure extends React.Component {
   state = {
     username: "Prince Yamato Take",
-    story: `The insignia of the great Japanese Empire is composed of three treasures which have been considered sacred, and guarded with
-        jealous care from time immemorial. These are the Yatano-no-Kagami or the Mirror of Yata, the Yasakami-no-Magatama or the Jewel of
-        Yasakami, and the Murakumo-no-Tsurugi or the Sword of Murakumo.`,
+    story: `The insignia of the great Japanese Empire is composed of three treasures which have been considered sacred, and guarded with jealous care from time immemorial. These are the Yatano-no-Kagami or the Mirror of Yata, the Yasakami-no-Magatama or the Jewel of Yasakami, and the Murakumo-no-Tsurugi or the Sword of Murakumo.`,
     wordIterator: 0
   };
 
   componentDidMount() {
     let newArr = this.state.story.split(" ");
-    this.setState({ story: newArr });
+    let finArr = newArr.map(el => (el = el + " "));
+    this.setState({ story: finArr });
+    this.incrementIterator();
   }
 
   incrementIterator() {
-    if (this.state.wordIterator < this.state.story.length) {
+    if (this.state.wordIterator < this.state.story.length + 1) {
       setTimeout(() => {
         this.setState({ wordIterator: this.state.wordIterator + 1 });
-      }, 1000);
-      console.log(this.state.wordIterator);
+        this.incrementIterator();
+      }, 200);
+      this.setState({
+        currentWords: this.state.story.slice(0, this.state.wordIterator)
+      });
     }
-  }
-
-  renderText() {
-    this.incrementIterator();
-    return this.state.story.slice(0, this.state.wordIterator);
   }
 
   render() {
@@ -43,7 +41,7 @@ class Adventure extends React.Component {
             </Card.Header>
             <Card.Body>
               <Card.Title>USERNAME OR STORYTITLE</Card.Title>
-              <Card.Text>{this.renderText()}</Card.Text>
+              <Card.Text>{this.state.currentWords}</Card.Text>
             </Card.Body>
           </Card>
         </Row>
