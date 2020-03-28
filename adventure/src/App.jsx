@@ -1,41 +1,27 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-
+import * as React from "react";
+//import Form from "react-bootstrap/Form";
+//import Button from "react-bootstrap/Button";
+import Home from "./Home"
 //import {BrowserRouter as Router, Link, Route, Switch} from "react-router "
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
-  state={
-    username:""
-  }
+
+ 
+
+ 
   render() {
     return (
-      <Form classname="form-group p-3 shadow-lrg">
-      <Form.Label>Username</Form.Label>
-      <Form.Control
-        value={this.state.username}
-        onChange={this.handleUsernameChange}
-        type="text"
-      />
-      <Form.Label>Message</Form.Label>
-      <br />
-      <Form.Control
-        as="textarea"
-        value={this.state.message}
-        onChange={this.handleMessageChange}
-        rows={7}
-      />
-      <Button
-        variant="primary"
-        onClick={this.handleSubmit}
-        className="mt-3 d-flex align-item-center justify-content-center"
-      >
-        
-        <span className="mx-1"></span>
-        Chirp It!
-      </Button>
-    </Form>
+      <React.Fragment>
+      <Router>
+        <Switch>
+          <Route exact path="/" >
+            <Home/>
+          </Route>
+        </Switch>
+      </Router>
+      </React.Fragment>
     );
   }
 }
