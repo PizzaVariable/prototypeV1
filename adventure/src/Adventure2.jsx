@@ -4,10 +4,10 @@ import { GiSpartanHelmet } from "react-icons/gi";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/row";
 
-class Adventure extends React.Component {
+class Adventuretwo extends React.Component {
   state = {
     username: "Prince Yamato Take",
-    story: `The insignia of the great Japanese Empire is composed of three treasures which have been considered sacred, and guarded with jealous care from time immemorial. These are the Yatano-no-Kagami or the Mirror of Yata, the Yasakami-no-Magatama or the Jewel of Yasakami, and the Murakumo-no-Tsurugi or the Sword of Murakumo.`,
+    story: `The worl is small`,
     wordIterator: 0
   };
 
@@ -23,7 +23,7 @@ class Adventure extends React.Component {
       setTimeout(() => {
         this.setState({ wordIterator: this.state.wordIterator + 1 });
         this.incrementIterator();
-      }, 200);
+      }, 132);
       this.setState({
         currentWords: this.state.story.slice(0, this.state.wordIterator)
       });
@@ -50,7 +50,7 @@ class Adventure extends React.Component {
   }
 }
 
-export default Adventure;
+export default Adventuretwo;
 
 //GiAttachedShield
 //GiAncientSword
